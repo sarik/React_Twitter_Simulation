@@ -8,7 +8,7 @@ class TweetItem extends Component {
   }
 
   render() {
-    const { post, created_at } = this.props;
+    const { post, created_at,firstname } = this.props;
 
     return (
       <div style={{ marginLeft:'100px',marginBottom: '5px' ,
@@ -16,7 +16,8 @@ class TweetItem extends Component {
       textAlign:'center'}}>
        
         <div style={{ textAlign:'right'}}>
-          Created at:{created_at}
+          
+          {!firstname ? created_at: <div > <div style = {{fontWeight:'bold'}}>{firstname}</div> at  {created_at} </div> }
           <hr />
         </div>
         <div style={{ fontWeight: 'bold',textAlign:'left'}}>

@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense,useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { compose } from 'recompose';
 
@@ -9,11 +9,14 @@ import { withAuthorization, withEmailVerification } from '../Session';
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 import Tweet from '../Tweets';
+import {AuthUserContext} from "../Session";
 const UserList = React.lazy(() => import('../Users/UserList'));
 //const {UserList} = (() => import('../Users'));
 
+
 const Explore = () => {
     const [search, setSearch] = useState("");
+    const {uid} = useContext(AuthUserContext);
     return (
 
         <div style={{ marginLeft: '320px', marginTop: '100px' }}>
@@ -25,7 +28,7 @@ const Explore = () => {
                </Suspense> */}
 
 
-                <UserList search={search} />
+                <UserList search={search} uid = {uid} />
             </Suspense>
         </div>
 

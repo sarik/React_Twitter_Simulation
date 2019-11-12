@@ -4,30 +4,31 @@ import axios from 'axios';
 import { useFetch } from './useFetch';
 
 import TweetItem from './TweetItem';
-import _ from 'lodash';
+
 import { auth } from 'firebase';
 
 const TweetList = (props) => {
 
-
+  const [mytweets, setMyTweets] = useState({ tweets: [], isFetching: false });
+ 
   //const { id } = useContext(AuthUserContext);
-  const { id, context } = props;
+  const { id ,context} = props;
 
   //this usefetch will run everttime a new id is passed,like if it generated from setState
-  const { tweets, isFetching } = useFetch(id, context);
+  //const { tweets, isFetching } = useFetch(id,context);
 
 
   //const [mytweets, setMyTweets] = useState({ tweets: [], isFetching: false });
 
-  //useEffect(() => {
-  //console.log('inital');
-  /* const fetchTweets = async () => {
+  useEffect(() => {
+  console.log('inital');
+   const fetchTweets = async () => {
     try {
       console.log('closing');
       setMyTweets({ tweets: [], isFetching: true });
       
       let res = await axios.get(
-        `http://192.168.1.16:5000/api/getMyTweets?userId=${JSON.stringify(
+        `http://localhost/api/getMyTweets?userId=${JSON.stringify(
           id
         )}`
       );
@@ -37,21 +38,22 @@ const TweetList = (props) => {
       setMyTweets({ tweets: [], isFetching: false });
     }
   };
-  fetchTweets(); */
-  // return ()=>{console.log('closing');}
-  //}, []);
+  fetchTweets(); 
+   return ()=>{console.log('closing');}
+   //why mytweets cant be passed here is since we are listening to it and we are changing mytweets through 
+   //setMyTweets inside,so it will 
+   //get stuck in an infinite loop
+  }, []);
 
 
 
 
   return (<div>
 
-    {isFetching ? '.....Wait' :
+    {mytweets.isFetching ? '.....Wait' :
       <ul style={{ listStyleType: 'None' }}>
-
-
         {
-          _.orderBy(tweets, "created_at", "desc").map(tweet => <li key={tweet.created_at}><TweetItem {...tweet} /></li>)
+          mytweets.tweets.map(tweet => <li><TweetItem {...tweet} /></li>)
         }
       </ul>}
 

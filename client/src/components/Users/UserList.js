@@ -1,12 +1,13 @@
 import React, { Component, useContext, useState, useEffect,Suspense } from 'react';
 import { AuthUserContext } from '../Session';
 import axios from 'axios';
+import _ from 'lodash';
 
 
 
 import { auth } from 'firebase';
 
-//import UserItem from './UserItem';
+import UserItem from './UserItem';
 
 /* const slowImport = (value, ms = 1000) =>{
   return new Promise(resolve => {
@@ -15,7 +16,7 @@ import { auth } from 'firebase';
 }
 
 const UserItem = React.lazy(() => slowImport(import('../Users/UserItem'))); */
-const UserItem = React.lazy(() => import('../Users/UserItem'));
+//const UserItem = React.lazy(() => import('../Users/UserItem'));
 
 class UserList extends Component {
   constructor(props) {
@@ -35,13 +36,17 @@ class UserList extends Component {
 
 
         let res = await axios.get(
-          `http://192.168.1.16:5000/api/fecthUsers?searchText=${JSON.stringify(
+          `http://localhost:5000/api/fecthUsers?searchText=${JSON.stringify(
+          //`http://192.168.1.16:5000/api/fecthUsers?searchText=${JSON.stringify(
             nextProps.search
+          )}&userId=${JSON.stringify(
+            this.props.uid
           )}`
         );
 
         console.log('done')
-        this.setState({ users: res.data })
+        let users = res.data.filter(user => user.firebaseid !== this.props.uid )
+        this.setState({ users: users})
 
       }
       catch (e) {
@@ -56,13 +61,17 @@ class UserList extends Component {
 
 
       let res = await axios.get(
-        `http://192.168.1.16:5000/api/fecthUsers?searchText=${JSON.stringify(
-          this.props.search
-        )}`
+        `http://localhost:5000/api/fecthUsers?searchText=${JSON.stringify(
+          //`http://192.168.1.16:5000/api/fecthUsers?searchText=${JSON.stringify(
+            this.props.search
+          )}&userId=${JSON.stringify(
+            this.props.uid
+          )}`
       );
 
       console.log('done')
-      this.setState({ users: res.data })
+      let users = res.data.filter(user => user.firebaseid !== this.props.uid )
+      this.setState({ users: users})
 
     }
     catch (e) {
@@ -99,7 +108,7 @@ class UserList extends Component {
     return (<div>
       {this.props.search}
       <ul style={{ listStyleType: 'None' }}>
-      {this.state.users.map(user => <Suspense fallback = {<div>loading user...</div>}><li><UserItem {...user}/></li></Suspense>)}
+      {this.state.users.map((user,index) => <Suspense key = {index} fallback = {<div>loading user...</div>}><li><UserItem {...user}/></li></Suspense>)}
       </ul>
     </div>)
   }
