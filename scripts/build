@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -f package.json ]; then
+  echo "Please run via 'yarn build'; do not call this script directly" >&2
+  exit 1
+fi
+
+npm run build --prefix=packages/client
+npm run build --prefix=packages/server
+
+rm -rf build
+mkdir build
+
+cp -r /app/packages/client/build /app/build/client
+cp -r /app/packages/server/build /app/build/build
+cp /app/packages/server/package.json /app/packages/server/.gcloudignore /app/packages/server/database.json /app/build
+cp /app/config/app-engine/${DEPLOYMENT_TARGET}.app.yaml /app/build/app.yaml
+
+ls /app/build
+
+echo "done"
