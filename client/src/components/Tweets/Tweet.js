@@ -46,7 +46,9 @@ class Tweet extends Component {
                   this.createTweet(authUser)
                 }
               >
-                {this.props.showTweetArea || <textarea value={this.state.tweet} style={{ height: '200px', width: '600px', marginLeft: '20px' }}
+                {this.props.showTweetArea || <textarea
+                placeholder = "Post something..."
+                value={this.state.tweet} style={{ height: '200px', width: '600px', marginLeft: '20px' }}
                   onChange={e => this.setState({ tweet: e.target.value })} />}
                 {this.props.showTweetArea || <button type="submit"
                   disabled={0 >= this.state.tweet.length || this.state.tweet.length > 140}>Tweet</button>}

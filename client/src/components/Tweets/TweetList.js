@@ -49,7 +49,8 @@ const TweetList = (props) => {
     {isFetching ? '.....Wait' :
       <ul style={{ listStyleType: 'None' }}>
 
-
+        <h2>{(tweets.length > 0) ? '' : (context === "self") ? 'Tweet to get started' : 'No tweets from followers'}
+        </h2>
         {
           _.orderBy(tweets, "created_at", "desc").map(tweet => <li key={tweet.created_at}><TweetItem {...tweet} /></li>)
         }

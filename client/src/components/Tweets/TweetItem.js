@@ -17,7 +17,7 @@ class TweetItem extends Component {
        
         <div style={{ textAlign:'right'}}>
           
-          {!firstname ? created_at: <div > <div style = {{fontWeight:'bold'}}>{firstname}</div> at  {created_at} </div> }
+          {!firstname ? created_at: <div > <div style = {{fontWeight:'bold'}}>{firstname}</div>   {created_at} </div> }
           <hr />
         </div>
         <div style={{ fontWeight: 'bold',textAlign:'left'}}>
