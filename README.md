@@ -7,11 +7,10 @@
 Just run the following command in root folder to get DB docker up with tables configured .Can access db locally via any
 postgres client via connection settings mentioned in .env file
 
-```
-docker-compose up --build
-```
+`docker-compose up --build '
 
-                     OR
+
+##### OR
 Run a Postrgres DB and update corresponding connection config in .env and run queries mentioned in db.sql
 
 ####  Server
