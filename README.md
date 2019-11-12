@@ -2,7 +2,7 @@
 
 #### Use browser incognito mode for multiple signups
 
-#### Database:
+#### Database( postgresQL):
 
 Just run the following command in root folder to get DB docker up with tables configured .Can access db locally via any
 postgres client via connection settings mentioned in .env file
