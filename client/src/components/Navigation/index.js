@@ -7,13 +7,15 @@ import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
 
-const listStyle = { 
+const listStyle = {
   //display: 'inline', 
-  marginBottom: '20px' ,
-  }
+  marginBottom: '20px',
+  fontWeight: 'bold',
 
-const linkStyle = {textDecoration: 'none'}
-  
+}
+
+const linkStyle = { textDecoration: 'none' }
+
 const orderStyle = { marginLeft: '20px' }
 
 const Navigation = () => (
@@ -32,36 +34,39 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <div>
-    <ul style={{
-      listStyleType:'None',
-      position: 'fixed',
-      width: '150px',
-      height: '30px',
-      left: '36px',
-      top: '136px',
-      fontSize:'22px',
-    
+    <ul
+      className="v-menu "
+      style={{
+        listStyleType: 'None',
+        position: 'fixed',
+        width: '200px',
+        height: '30px',
+        left: '36px',
+        top: '136px',
+        fontSize: '22px',
+        rightMargin: '20px'
+      }}
 
-      
-    }} >
+
+    >
       {/* <li style = {{linkStyle}} style={listStyle}>
         <Link  style ={linkStyle} to={ROUTES.LANDING}>Landing</Link>
       </li> */}
-      <li  style={listStyle}>
-        <Link  style ={linkStyle} to={ROUTES.HOME}>Home</Link>
+      <li style={listStyle}>
+        <Link style={linkStyle} to={ROUTES.HOME}><span style={{ fontSize: 20 }}>Home</span></Link>
       </li>
-     {/*  <li style = {{linkStyle}} style={listStyle}>
+      {/*  <li style = {{linkStyle}} style={listStyle}>
         <Link  style ={linkStyle} to={ROUTES.ACCOUNT}>Account</Link>
       </li> */}
       { /*  {!!authUser.roles[ROLES.ADMIN] && (} */}
       <li style={listStyle}>
-        <Link  style ={linkStyle} to={ROUTES.ADMIN}>Your Tweets</Link>
+        <Link style={linkStyle} to={ROUTES.ADMIN}><span style={{ fontSize: 20 }}>Your Tweets</span></Link>
       </li>
       <li style={listStyle}>
-        <a style ={linkStyle} href={ROUTES.EXPLORE}>Explore</a>
+        <a style={linkStyle} href={ROUTES.EXPLORE}><span style={{ fontSize: 20 }}>Explore</span></a>
       </li>
       {/*  )} */}
-      <li style={listStyle}>
+      <li >
         <SignOutButton />
       </li>
     </ul>
@@ -69,12 +74,12 @@ const NavigationAuth = ({ authUser }) => (
 );
 
 const NavigationNonAuth = () => (
-  <ul >
+  <ul className="h-menu">
     <li style={listStyle}>
-      <Link  style ={linkStyle} to={ROUTES.LANDING}>Landing</Link>
+      <Link style={linkStyle} to={ROUTES.LANDING}>Home</Link>
     </li>
-    <li  style={listStyle}>
-      <Link  style ={linkStyle} to={ROUTES.SIGN_IN}>Sign In</Link>
+    <li style={listStyle}>
+      <Link style={linkStyle} to={ROUTES.SIGN_IN}>Sign In</Link>
     </li>
   </ul>
 );
