@@ -5,6 +5,10 @@ import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 //const TweetList = React.lazy(() => import('./TweetList'));
 import TweetList from './TweetList';
+import Linkify from 'react-linkify';
+
+
+
 
 class Tweet extends Component {
   constructor(props) {
@@ -41,21 +45,25 @@ class Tweet extends Component {
           {authUser => (
             <div>
               {/*  <div>{authUser.email}</div> */}
+
               <form
                 onSubmit={event =>
                   this.createTweet(authUser)
                 }
               >
-                {this.props.showTweetArea || <textarea
-                placeholder = "Post something..."
-                value={this.state.tweet} style={{ height: '200px', width: '600px', marginLeft: '20px' }}
-                  onChange={e => this.setState({ tweet: e.target.value })} />}
+
+                {this.props.showTweetArea ||  <Linkify><textarea
+                
+                  placeholder="Post something..."
+                  value={this.state.tweet} style={{ height: '200px', width: '600px', marginLeft: '20px',fontSize:'18px' }}
+                  onChange={e => this.setState({ tweet: e.target.value })} /></Linkify>}
                 {this.props.showTweetArea || <button type="submit"
                   disabled={0 >= this.state.tweet.length || this.state.tweet.length > 140}>Tweet</button>}
                 {
                   (this.state.tweet.length > 140) ? "Pls keep your tweet upto 140 words" : ""
                 }
               </form>
+
               <Suspense fallback={<div>Please wait while we fetch tweets</div>}>
                 <div></div>
                 <TweetList id={authUser.uid} context={this.props.context} />
@@ -65,7 +73,7 @@ class Tweet extends Component {
 
 
         </AuthUserContext.Consumer>
-      </div>
+      </div >
     );
   }
 }

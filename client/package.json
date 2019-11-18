@@ -9,6 +9,7 @@
     "react": "next",
     "react-burger-menu": "^2.6.12",
     "react-dom": "next",
+    "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "recompose": "^0.30.0"
