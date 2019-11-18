@@ -20,8 +20,9 @@ const Explore = () => {
     return (
 
         <div style={{ marginLeft: '320px', marginTop: '100px' }}>
-            <Suspense fallback={<div>Loading...</div>}>
-                <h2>Search People to follow</h2>
+             <h2>Search People to follow</h2>
+            <Suspense fallback={<div>Loading Profiles...</div>}>
+               
                 <input type="text" placeholder="search" onChange={e => setSearch(e.target.value)} value={search} />
                 {/*  <Suspense fallback={<div>Please wait while we fetch users</div>}>
                <UserList search={search} />

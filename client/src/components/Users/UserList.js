@@ -7,15 +7,15 @@ import _ from 'lodash';
 
 import { auth } from 'firebase';
 
-import UserItem from './UserItem';
+//import UserItem from './UserItem';
 
-/* const slowImport = (value, ms = 1000) =>{
+ const slowImport = (value, ms = 4000) =>{
   return new Promise(resolve => {
     setTimeout(() => resolve(value), ms);
   });
 }
 
-const UserItem = React.lazy(() => slowImport(import('../Users/UserItem'))); */
+const UserItem = React.lazy(() => slowImport(import('../Users/UserItem'))); 
 //const UserItem = React.lazy(() => import('../Users/UserItem'));
 
 class UserList extends Component {
@@ -108,7 +108,10 @@ class UserList extends Component {
     return (<div>
       {this.props.search}
       <ul style={{ listStyleType: 'None' }}>
-      {this.state.users.map((user,index) => <Suspense key = {index} fallback = {<div>loading user...</div>}><li><UserItem {...user}/></li></Suspense>)}
+      {this.state.users.map((user,index) =>
+      /*  <Suspense key = {index} fallback = {<div>loading profile...</div>}><li><UserItem {...user}/></li></Suspense>) */
+      <li><UserItem {...user}/></li> )
+       }
       </ul>
     </div>)
   }

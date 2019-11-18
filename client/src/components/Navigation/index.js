@@ -58,7 +58,7 @@ const NavigationAuth = ({ authUser }) => (
         <Link  style ={linkStyle} to={ROUTES.ADMIN}>Your Tweets</Link>
       </li>
       <li style={listStyle}>
-        <Link  style ={linkStyle} to={ROUTES.EXPLORE}>Explore</Link>
+        <a style ={linkStyle} href={ROUTES.EXPLORE}>Explore</a>
       </li>
       {/*  )} */}
       <li style={listStyle}>
