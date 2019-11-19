@@ -138,7 +138,7 @@ class SignInGoogleBase extends Component {
       <form onSubmit={this.onSubmit}>
         <button type="submit">Sign In with Google</button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p style = {{color:"red",fontStyle:'italic'}}>{error.message}</p>}
       </form>
     );
   }
@@ -184,7 +184,7 @@ class SignInFacebookBase extends Component {
       <form onSubmit={this.onSubmit}>
         <button type="submit">Sign In with Facebook</button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p style = {{color:"red",fontStyle:'italic'}}> {error.message}</p>}
       </form>
     );
   }
@@ -230,7 +230,7 @@ class SignInTwitterBase extends Component {
       <form onSubmit={this.onSubmit}>
         <button type="submit">Sign In with Twitter</button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p style = {{color:"red",fontStyle:'italic'}}>{error.message}</p>}
       </form>
     );
   }
