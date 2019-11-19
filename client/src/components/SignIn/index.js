@@ -92,7 +92,7 @@ class SignInFormBase extends Component {
         {this.state.loading ? 'Signing In':'Sign in '} 
         </button>
 
-        {error && <p>{error.message}</p>}
+        {error && <p style = {{color:"red",fontStyle:'italic'}}>{error.message}</p>}
       </form>
     );
   }
